@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/blood.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <p>Canvas API</p>
+          <img
+            src="./images/ed-letter-slide-jan-18.jpg"
+            alt="image"
+            width="550"
+            height="400"
+          />
+        </section>
+
+        <section>
+          <pre><code class="language-html">
+    <canvas id="canvas" height="800" width="500"></canvas>        
+						</code></pre>
+          <img src="./images/canvas.png" alt="image" width="600" height="400" />
+        </section>
+
+        <section>
+          <img
+            width="350"
+            height="350"
+            src="./images/0_BcJZAROlMwnpOQsd.webp"
+            alt="image"
+          />
+        </section>
+
+        <section>
+          <p>Сreating a context</p>
+          <pre><code class="hljs language-javascript">
+    const canvas = document.getElementById( 'canvas' ); // DOM node
+		const ctx = canvas.getContext('2d'); // drawing context
+
+    ctx.rect( x, y, width, height ); // draw a rectangle
+					</code></pre>
+        </section>
+
+        <section>
+          <pre><code class="hljs language-javascript">
+    ctx.beginPath();
+    ctx.rect( x, y, width, height ); // draw a rectangle
+					</code></pre>
+        </section>
+
+        <section>
+          <p>Fill and Stroke</p>
+          <pre><code class="hljs language-javascript">
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = '#03A87C';
+    ctx.strokeStyle = 'rgba(3,168,124,0.5)';
+						</code></pre>
+        </section>
+
+        <section>
+          <p>Draw rectangle(fill)</p>
+          <pre><code class="hljs language-javascript">
+    ctx.beginPath();
+    ctx.rect(250,250,100,100); // x:250, y:250, w:100, h:100
+    ctx.fillStyle = 'rgba(251,192,45,0.75)'; // fill color
+    ctx.fill(); // fill previous shapes
+						</code></pre>
+          <p>Draw rectangle(stroke)</p>
+          <pre><code class="hljs language-javascript">
+    ctx.beginPath();
+    ctx.rect(250,250,100,100); // x:250, y:250, w:100, h:100
+    ctx.strokeStyle = 'rgba(216,67,21)'; // fill color
+    ctx.stroke(); // fill previous shapes
+              </code></pre>
+        </section>
+
+        <section>
+          <img
+            src="./images/fill&stroke.png"
+            alt="image"
+            width="600"
+            height="400"
+          />
+        </section>
+
+        <section>
+          <p>Easy rectangular drawing operations</p>
+          <pre><code class="hljs language-javascript">
+    ctx.clearRect(x, y, width, height);
+    ctx.fillRect(x, y, width, height);
+    ctx.strokeRect(x, y, width, height);
+						</code></pre>
+        </section>
+        <section>
+          <pre><code class="hljs language-javascript">
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(216,67,21)"; // fill color
+    ctx.rect(50, 100, 200, 200); // x:50, y:100, w:200, h:200
+    ctx.rect(350, 100, 200, 200); // x:350, y:100, w:200, h:200
+    ctx.fill(); // fill previous shapes
+            
+    ctx.beginPath();
+    ctx.clearRect(100, 150, 100, 100);
+            
+    ctx.fillStyle = "rgba(216,244,21)"; // fill color
+    ctx.stroke(); // fill previous shapes
+    ctx.fillRect(400, 150, 100, 100);
+						</code></pre>
+        </section>
+
+        <section>
+          <img src="./images/clear.png" alt="image" width="600" height="400" />
+        </section>
+
+        <section>
+          <p>Drawing Straight Paths</p>
+          <img
+            src="./images/pencil-line-paper.jpg"
+            alt="image"
+            width="600"
+            height="400"
+          />
+        </section>
+
+        <section>
+          <pre><code class="hljs language-javascript">
+    ctx.moveTo(x, y);
+    ctx.lineTo(x, y);
+						</code></pre>
+        </section>
+
+        <section>
+          <section>
+            <pre><code class="hljs language-javascript">
+    // draw rectangle
+    ctx.fillStyle = "blue"; //fill color
+    ctx.beginPath();
+    ctx.moveTo(100, 100); // move pen to x:100, y:100
+    ctx.lineTo(300, 100); // line to x:300, y:100
+    ctx.lineTo(300, 300); // line to x:300, y:300
+    ctx.lineTo(100, 300); // line to x:100, y:300
+    ctx.lineTo(100, 100); // line to x:100, y:100
+    ctx.fill(); // fill previous paths
+</code></pre>
+          </section>
+
+          <section>
+            <pre><code class="hljs language-javascript">
+    // draw triangle
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.moveTo(500, 100); // move pen to x:500, y:100
+    ctx.lineTo(400, 300); // line to x:400, y:300
+    ctx.lineTo(600, 300); // line to x:600, y:300
+    ctx.closePath(); // line to x:500, y:100
+    ctx.fill(); // fill previous paths
+</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <img
+            src="./images/rectrien.png"
+            alt="image"
+            width="600"
+            height="400"
+          />
+        </section>
+
+        <section>
+          <p>Arc</p>
+          <pre><code class="hljs language-javascript">
+    ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+						</code></pre>
+        </section>
+
+        <section>
+          <pre><code class="hljs language-javascript">
+    ctx.beginPath();
+    ctx.arc(100, 200, 50, 0, 2 * Math.PI);
+    ctx.fill(); // close paths and fill
+
+    ctx.beginPath();
+    ctx.arc(300, 200, 50, 0, Math.PI);
+    ctx.fill(); // close paths and fill
+    ctx.beginPath();
+
+    ctx.beginPath();
+    ctx.arc(500, 200, 50, 0, Math.PI, true);
+    ctx.stroke(); // stroke only
+						</code></pre>
+        </section>
+
+        <section>
+          <img src="./images/curves.png" alt="image" width="600" height="400" />
+        </section>
+
+        <section>
+          <pre><code class="hljs language-javascript">
+    ctx.quadraticCurveTo(cpx, cpy, x, y);
+    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+                    </code></pre>
+          <img src="./images/bez.webp" alt="image" />
+        </section>
+
+        <section>
+          <p>Draw image</p>
+          <img src="./images/imgcut.webp" alt="image" />
+          <pre><code class="hljs language-javascript">
+    ctx.drawImage(img, sx,sy, sWidth,sHeight, dx,dy, dWidth,dHeight);
+                    </code></pre>
+        </section>
+
+        <section>
+          <p>Draw text</p>
+          <pre><code class="hljs language-javascript">
+  ctx.fillText(text, x, y);
+  ctx.fillText(text, x, y, maxWidth);
+
+  ctx.strokeText(text, x, y);
+  ctx.strokeText(text, x, y , maxWidth);
+                    </code></pre>
+        </section>
+
+        <section>
+          <p>Fill text</p>
+          <pre><code class="hljs language-javascript">
+    // set font properties
+    ctx.font = 'italic 50px sans-serif';
+
+    // set fill style
+    ctx.fillStyle = 'blue';
+
+    // fill text at (50,50)
+    ctx.fillText( 'Hello World!', 50, 50 );
+
+    // set max width to 150px (compress text)
+    ctx.fillText( 'Hello World!', 50, 100, 150 );
+                            </code></pre>
+        </section>
+
+        <section>
+          <p>Stroke text</p>
+          <pre><code class="hljs language-javascript">
+    // set font properties
+    ctx.font = 'italic 50px sans-serif';
+
+    // set stroke style
+    ctx.strokeStyle = 'red';
+
+    // stroke text (with 2px stroke width)
+    ctx.lineWidth = 2;
+    ctx.strokeText( 'Hello World!', 50, 200 );
+                            </code></pre>
+        </section>
+
+        <section>
+          <img
+            src="./images/drawText.png"
+            alt="image"
+            width="600"
+            height="400"
+          />
+        </section>
+
+        <section>
+          <p>Animation</p>
+          <img src="./images/film.jpg" alt="image" width="600" height="400" />
+        </section>
+
+        <section>
+          <p>Simple animation function</p>
+          <pre><code class="hljs language-javascript">
+    let x = 0;
+    const y = 200; 
+
+    function draw() {
+      if (x > 500) {
+        return;
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(x, y, 100, 100);
+      x += 5;
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+                            </code></pre>
+        </section>
+
+        <section>
+          <img src="./images/anim.gif" alt="image" width="600" height="400" />
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealHighlight],
+      });
+    </script>
+  </body>
+</html>
